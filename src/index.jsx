@@ -6,13 +6,12 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 
-const store = createStore(historyReducer);
 
 
 const render = (Component) => {
   ReactDOM.render(
     <HashRouter>
-      <Provider store={store}>
+      <Provider>
         <Component/>
       </Provider>
     </HashRouter>,
@@ -20,7 +19,7 @@ const render = (Component) => {
   );
 };
 
-render(Game);
+render(App);
 
 /*eslint-disable */
 if (module.hot) {
