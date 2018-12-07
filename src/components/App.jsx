@@ -26,6 +26,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' render={()=><Welcome />} />
+          <Route exact path='/Command' render={()=><Command />} />
           <Route component={Error404} />
         </Switch>
       </div>
