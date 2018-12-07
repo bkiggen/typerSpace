@@ -9,7 +9,27 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers/index';
 import thunkMiddleware from 'redux-thunk';
 
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const render = (Component) => {
+  ReactDOM.render(
+    <HashRouter>
+      <Provider store={store}>
+        <Component/>
+      </Provider>
+    </HashRouter>,
+    document.getElementById('root')
+  );
+}
+
+render(App);
+
+/*eslint-disable */
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    render(App);
+  });
+}
+/*eslint-enable */
 
 serviceWorker.unregister();

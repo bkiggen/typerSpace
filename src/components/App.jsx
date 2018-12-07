@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+import Error404 from './Error404';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Welcome from './Welcome';
 
 class App extends Component {
 
@@ -20,10 +24,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>app is working</h1>
+        <Switch>
+          <Route exact path='/' render={()=><Welcome />} />
+          <Route component={Error404} />
+        </Switch>
       </div>
     );
   }
 }
+
 
 export default App;
