@@ -4,18 +4,11 @@ import Error404 from './Error404';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Welcome from './Welcome';
+import Training from './Training';
+import Battle from './Battle';
+
 
 class App extends Component {
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -27,6 +20,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={()=><Welcome />} />
           <Route exact path='/Command' render={()=><Command />} />
+          <Route exact path='/Battle' render={()=><Battle />} />
+          <Route exact path='/Training' render={()=><Training />} />
           <Route component={Error404} />
         </Switch>
       </div>

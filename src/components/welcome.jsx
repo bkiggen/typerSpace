@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 
 function Welcome(props){
   return (
-    <div>
+    <div className="welcomeContainer">
+      <style jsx>{`
+        .welcomeContainer {
+          width: 1000px;
+          height: 800px;
+          background-image: url('../assets/Welcome.png');
+          margin: 0 auto;
+        }
+        `}</style>
       <h1>Welcome works</h1>
     </div>
   );
