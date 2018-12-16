@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import WelcomeImage from '../assets/images/Welcome.png'
 
 function Welcome(props){
   return (
@@ -8,7 +9,7 @@ function Welcome(props){
         .welcomeContainer {
           width: 1000px;
           height: 800px;
-          background-image: url('../assets/Welcome.png');
+          background-image: url({WelcomeImage});
           margin: 0 auto;
         }
         `}</style>
