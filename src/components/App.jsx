@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Welcome from './Welcome';
 import Training from './Training';
 import Battle from './Battle';
+import Command from './Command';
 
 
 class App extends Component {
