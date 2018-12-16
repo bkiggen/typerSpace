@@ -7,7 +7,8 @@ import Welcome from './Welcome';
 import Training from './Training';
 import Battle from './Battle';
 import Command from './Command';
-
+import Stats from './Stats';
+import TempNav from './TempNav';
 
 class App extends Component {
 
@@ -18,11 +19,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <TempNav/>
         <Switch>
           <Route exact path='/' render={()=><Welcome />} />
           <Route exact path='/Command' render={()=><Command />} />
           <Route exact path='/Battle' render={()=><Battle />} />
           <Route exact path='/Training' render={()=><Training />} />
+          <Route exact path='/Stats' render={()=><Stats />} />
           <Route component={Error404} />
         </Switch>
       </div>

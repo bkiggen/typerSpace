@@ -7,9 +7,9 @@ function Welcome(props){
     <div className="welcomeContainer">
       <style jsx>{`
         .welcomeContainer {
-          width: 1000px;
-          height: 800px;
-          background-image: url({WelcomeImage});
+          width: 1155px;
+          height: 684px;
+          background-image: url(${WelcomeImage});
           margin: 0 auto;
         }
         `}</style>
