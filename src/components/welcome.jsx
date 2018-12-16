@@ -12,7 +12,6 @@ function Welcome(props){
           margin: 0 auto;
         }
         `}</style>
-      <h1>Welcome works</h1>
     </div>
   );
 }

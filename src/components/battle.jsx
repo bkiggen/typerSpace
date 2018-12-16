@@ -11,7 +11,6 @@ function Battle(props){
           background-image: url('../assets/Battle.png')
         }
         `}</style>
-      <h1>Battle works</h1>
     </div>
   );
 }

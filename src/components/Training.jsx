@@ -11,7 +11,6 @@ function Training(props){
           background-image: url('../assets/Training.png')
         }
         `}</style>
-      <h1>Training works</h1>
     </div>
   );
 }

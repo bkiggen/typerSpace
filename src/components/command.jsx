@@ -11,7 +11,6 @@ function Command(props){
           background-image: url('../assets/Command.png')
         }
         `}</style>
-      <h1>Command works</h1>
     </div>
   );
 }
