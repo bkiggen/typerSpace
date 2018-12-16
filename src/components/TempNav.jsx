@@ -10,7 +10,7 @@ function TempNav(props){
         color: red;
       }
       `}</style>
-      <Link to="/Welcome"> Welcome </Link>
+      <Link to="/"> Welcome </Link>
       <Link to="/Command"> Command </Link>
       <Link to="/Stats"> Stats </Link>
       <Link to="/Battle"> Battle </Link>
