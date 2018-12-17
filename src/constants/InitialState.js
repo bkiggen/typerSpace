@@ -1,5 +1,5 @@
 export const initialState = {
-  test: 1,
+  currentRound: 1,
   test2: 2
 
 };
