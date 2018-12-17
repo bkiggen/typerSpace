@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './../assets/App.css';
 import Error404 from './Error404';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
