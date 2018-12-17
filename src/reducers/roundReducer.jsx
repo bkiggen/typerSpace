@@ -2,21 +2,26 @@ import constants from './../constants';
 const { c, initialState } = constants;
 
 
-export default (state = initialState, action) => {
-  console.log(state);
+const roundReducer = (state = initialState, action) => {
   let newState;
-  // const { names, location, issue, timeOpen, id, formattedWaitTime } = action; how will I use this?
+  let newIsTraining;
 
   switch(action.type) {
     case c.NEW_ROUND:
-      newState = Object.assign({}, state, {
-        currentRound: 2
-      });
-      return newState;
+      const newRound = state.currentRound + 1;
+      newIsTraining = !state.isTraining;
 
+      newState = Object.assign({}, state, {
+        currentRound: newRound,
+        isTraining: newIsTraining
+      });
+
+      console.log(state.isTraining);
+      return newState;
     default:
       return state;
 
-  };
+  }
+};
 
-}
+export default roundReducer;

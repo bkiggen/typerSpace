@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TrainingImage from './../assets/images/Training.png';
+import { connect } from 'react-redux';
+import constants from './../constants';
 import styled, { css } from 'styled-components';
 import L0 from './../assets/images/hands L0.png';
 import R0 from './../assets/images/hands R0.png';
@@ -14,6 +16,7 @@ import R4 from './../assets/images/hands R4.png';
 import L4 from './../assets/images/hands L4.png';
 import R5 from './../assets/images/hands R5.png';
 import L5 from './../assets/images/hands L5.png';
+const { c } = constants;
 
 const WelcomeContainer = styled.div`
   width: 1155px;
@@ -74,6 +77,7 @@ const Button = styled.button`
 
 
 function Training(props){
+  console.log(props);
 
   function getHandContent(letter){
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
@@ -142,20 +146,34 @@ function Training(props){
     }
   }
 
-  let handContent;
+  function updateCurrentLevel() {
+    const { dispatch } = props;
+    const action = {
+      type: c.NEW_ROUND
+    };
+    dispatch(action);
+  }
 
+  let leftBookContent;
+  let rightBookContent;
+
+  let handContent;
   if ( 1 === 1 ) {
-    handContent = <Button onClick={getHandContent}>Start Round</Button>
+    handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
+  }
+
+  const mapStateToProps = state =>{
+    
   }
 
   return (
     <WelcomeContainer className="welcomeContainer">
       <BookContainer>
         <InnerBook left>
-          <p></p>
+          {leftBookContent}
         </InnerBook>
         <InnerBook right>
-          <p></p>
+          {rightBookContent}
         </InnerBook>
       </BookContainer>
       <HandsDiv>
@@ -166,4 +184,4 @@ function Training(props){
 };
 
 
-export default Training;
+export default connect(mapStateToProps)(Training);
