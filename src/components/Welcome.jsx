@@ -23,12 +23,13 @@ const EnterButton = styled.button`
   border: 1px solid #EFCB8C;
   background-color: #0D8D9B;
   &:hover {
-    border: 1px solid red;
+
     animation: hover 1s 1;
     animation-fill-mode: forwards;
   }
   @keyframes hover {
     100%{
+      border: 1px solid red;
       box-shadow: 0px 0px 6px 0px red;
     }
   }

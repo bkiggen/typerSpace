@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 function TempNav(props){
   return (
-    <div>
+    <div className="tempNav">
     <style jsx> {`
-      Link {
-        color: red;
+      .tempNav {
+
       }
       `}</style>
       <Link to="/"> Welcome </Link>
