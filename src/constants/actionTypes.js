@@ -1,1 +1,1 @@
-// export const ADD_TICKET = 'ADD_TICKET'; example
+export const NEW_ROUND = 'NEW_ROUND';

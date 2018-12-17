@@ -49,6 +49,28 @@ const HandsDiv = styled.div`
   justify-content: center;
 `;
 
+const Button = styled.button`
+  height: 60px;
+  width: 90px;
+  outline: none;
+  border: 1px solid #FC9FDF;
+  background-color: #6C2B15;
+  color: #F0A513;
+  font-size: 20px;
+  border-radius: 4px;
+  margin-top: 50px;
+  &:hover {
+    animation: hover 1s 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes hover {
+    100%{
+      border: 1px solid #FC9FDF;
+      box-shadow: 0px 0px 6px 0px #FC9FDF;
+    }
+  }
+`
+
 
 
 function Training(props){
@@ -120,8 +142,10 @@ function Training(props){
     }
   }
 
-  const dynamicContent = {
+  let handContent;
 
+  if ( 1 === 1 ) {
+    handContent = <Button onClick={getHandContent}>Start Round</Button>
   }
 
   return (
@@ -135,8 +159,7 @@ function Training(props){
         </InnerBook>
       </BookContainer>
       <HandsDiv>
-        <img src={L1}></img>
-        <img src={R3}></img>
+        {handContent}
       </HandsDiv>
     </WelcomeContainer>
   );

@@ -23,7 +23,6 @@ const EnterButton = styled.button`
   border: 1px solid #EFCB8C;
   background-color: #0D8D9B;
   &:hover {
-
     animation: hover 1s 1;
     animation-fill-mode: forwards;
   }
@@ -40,7 +39,9 @@ function Welcome(props){
   return (
     <WelcomeContainer>
       <h1>Welcome to typerSpace!</h1>
-      <EnterButton><Link to="/Command" style={{color: '#EFCB8C', textDecoration: 'none', fontSize: '14px'}}>Let's Begin</Link></EnterButton>
+      <EnterButton>
+        <Link to="/Command" style={{color: '#EFCB8C', textDecoration: 'none', fontSize: '14px'}}>Let's Begin</Link>
+      </EnterButton>
     </WelcomeContainer>
   );
 }
