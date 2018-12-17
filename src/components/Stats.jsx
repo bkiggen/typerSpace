@@ -9,7 +9,10 @@ function Stats(props){
         .welcomeContainer {
           width: 1155px;
           height: 684px;
-          background-image: url(${StatsImage})
+          margin: 0 auto;
+          padding-top: 50px;
+          background-image: url(${StatsImage});
+          background-repeat: no-repeat;
         }
         `}</style>
     </div>

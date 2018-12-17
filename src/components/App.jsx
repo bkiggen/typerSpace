@@ -10,11 +10,8 @@ import Command from './Command';
 import Stats from './Stats';
 import TempNav from './TempNav';
 
+
 class App extends Component {
-
-
-
-
 
   render() {
     return (

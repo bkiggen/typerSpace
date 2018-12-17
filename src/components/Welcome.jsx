@@ -11,6 +11,7 @@ const WelcomeContainer = styled.div`
   text-align: center;
   padding-top: 50px;
   color: red;
+  background-repeat: no-repeat;
 `;
 
 function Welcome(props){
