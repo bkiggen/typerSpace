@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CommandImage from '../assets/images/Command.png';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const LinkContainer = styled.div`
   margin: 0 auto;
@@ -10,13 +11,13 @@ const LinkContainer = styled.div`
   height: 285px;
   display: flex;
   justify-content: space-between;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Julius Sans One', sans-serif;
 `;
 
 const LinkDiv = styled.div`
   height: 285px;
   text-align: center;
-  margin-top: 90px;
+  margin-top: 100px;
 
   ${props => props.primary && css`
     width: 270px;
@@ -42,17 +43,23 @@ function Command(props){
           padding-top: 50px;
           background-image: url(${CommandImage});
           background-repeat: no-repeat;
-        }
+        };
         `}</style>
       <LinkContainer>
         <LinkDiv primary>
+          <Link to='/Stats' style={{ textDecoration: 'none', color: 'whitesmoke'}}>
           <h1>Statistics</h1>
+          </Link>
         </LinkDiv>
         <LinkDiv secondary>
+          <Link to='/Training' style={{ textDecoration: 'none', color: 'whitesmoke'}}>
           <h1>Training</h1>
+          </Link>
         </LinkDiv>
         <LinkDiv tertiary>
+          <Link to='/Battle' style={{ textDecoration: 'none', color: 'whitesmoke'}}>
           <h1>Battle</h1>
+          </Link>
         </LinkDiv>
       </LinkContainer>
     </div>
