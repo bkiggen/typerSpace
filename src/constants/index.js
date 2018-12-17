@@ -1,5 +1,8 @@
 import * as types from './ActionTypes';
+import { initialState } from './InitialState';
+
 
 export default {
-  c: types
+  initialState: initialState,
+  types: types
 };
