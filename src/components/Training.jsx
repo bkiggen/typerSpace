@@ -75,70 +75,74 @@ const Button = styled.button`
 `
 
 function Training(props){
-  console.log(props)
   function getHandContent(letter){
+    console.log(letter)
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
       return (
       <div>
-        <img src={L2}></img>
-        <img src={R0}></img>
-      </div>
-    )
-    } else if (letter = ' '){
-      return (
-      <div>
-        <img src={L1}></img>
-        <img src={R1}></img>
+        <img alt="hand" src={L2}></img>
+        <img alt="hand" src={R0}></img>
       </div>
     )
     } else if (letter === 'y' || letter === 'h' || letter === 'n' || letter === 'u' || letter === 'j' || letter === 'm') {
       return (
       <div>
-        <img src={L0}></img>
-        <img src={R2}></img>
+        <img alt="hand" src={L0}></img>
+        <img alt="hand" src={R2}></img>
       </div>
     )
     } else if (letter === 'e' || letter === 'd' || letter === 'c') {
       return (
       <div>
-        <img src={L3}></img>
-        <img src={R0}></img>
+        <img alt="hand" src={L3}></img>
+        <img alt="hand" src={R0}></img>
       </div>
     )
     } else if (letter === 'w' || letter === 's' || letter === 'x') {
       return (
       <div>
-        <img src={L4}></img>
-        <img src={R0}></img>
+        <img alt="hand" src={L4}></img>
+        <img alt="hand" src={R0}></img>
       </div>
     )
     } else if (letter === 'q' || letter === 'a' || letter === 'z') {
       return (
       <div>
-        <img src={L5}></img>
-        <img src={R0}></img>
+        <img alt="hand" src={L5}></img>
+        <img alt="hand" src={R0}></img>
       </div>
     )
     } else if (letter === 'i' || letter === 'k' || letter === ',') {
       return (
         <div>
-          <img src={L0}></img>
-          <img src={R3}></img>
+          <img alt="hand" src={L0}></img>
+          <img alt="hand" src={R3}></img>
         </div>
       )
       } else if (letter === 'o' || letter === 'l' || letter === '.') {
         return (
         <div>
-          <img src={L0}></img>
-          <img src={R4}></img>
+          <img alt="hand" src={L0}></img>
+          <img alt="hand" src={R4}></img>
         </div>
       )
       } else if (letter === 'p' || letter === ';' || letter === '/') {
         return (
         <div>
-          <img src={L0}></img>
-          <img src={R5}></img>
+          <img alt="hand" src={L0}></img>
+          <img alt="hand" src={R5}></img>
         </div>
+      )
+    } else if (letter = ' '){
+      return (
+      <div>
+        <img alt="hand" src={L1}></img>
+        <img alt="hand" src={R1}></img>
+      </div>
+    )
+    } else {
+      return (
+        <p>'error!'</p>
       )
     }
   }
@@ -154,12 +158,18 @@ function Training(props){
   let leftBookContent;
   let rightBookContent;
 
+  if(props.currentRound > 0){
+    leftBookContent = <p>{props.levels[props.currentRound - 1][0]}</p>;
+    rightBookContent = <p>{props.levels[props.currentRound - 1][1]}</p>;
+  }
   let handContent;
 
+
+//decide hand content
   if ( !props.isTraining ) {
     handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
   } else if (props.isTraining){
-    handContent = <img src={R5}/>
+    handContent = getHandContent('a');
   }
 
 

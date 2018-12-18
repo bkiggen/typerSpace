@@ -12,9 +12,6 @@ import TempNav from './TempNav';
 
 
 class App extends Component {
-  componentDidMount(){
-    console.log(this.props.currentRound);
-  }
 
   render() {
     return (
@@ -27,6 +24,7 @@ class App extends Component {
           <Route exact path='/Training' render={()=><Training
               currentRound={this.props.currentRound}
               isTraining={this.props.isTraining}
+              levels={this.props.levels}
                 />} />
           <Route exact path='/Stats' render={()=><Stats />} />
           <Route component={Error404} />
@@ -39,7 +37,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     currentRound: state.roundReducer.currentRound,
-    isTraining: state.roundReducer.isTraining
+    isTraining: state.roundReducer.isTraining,
+    levels: state.roundReducer.levels
   };
 };
 
