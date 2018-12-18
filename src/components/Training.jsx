@@ -35,12 +35,13 @@ const BookContainer = styled.div`
   display: flex;
   justify-content: space-between;
   `;
+
 const InnerBook = styled.div`
   width: 214px;
   height: 400px;
   word-wrap: break-word;
   font-size: 20px;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
 `;
 
 const HandsDiv = styled.div`
@@ -74,9 +75,15 @@ const Button = styled.button`
   }
 `
 
-function Training(props){
-  function getHandContent(letter){
+const Span = styled.span`
+  color: red;
+`
 
+function Training(props){
+  let currentLetter;
+  let handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
+
+  function getHandContent(letter){
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
       return (
       <div>
@@ -145,20 +152,43 @@ function Training(props){
         <p>'error!'</p>
       )
     }
+  };
+
+  function handDecider(letter){
+    if ( !props.isTraining ) {
+      handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
+    } else if (props.isTraining){
+      handContent = getHandContent(letter)
+    }
   }
+
+  function getTypingContent(){
+    let displayContent = [];
+    let typingContentArray = props.levels[props.currentRound].split('');
+    for(let i = 0; i < typingContentArray.length; i++){
+      if(i === currentLetter) {
+        displayContent.push(<Span>{typingContentArray[i]}</Span>);
+      } else {
+        displayContent.push(<span>{typingContentArray[i]}</span>);
+      }
+    }
+    handDecider(typingContentArray[currentLetter]);
+    return displayContent;
+  }
+
+
 
   function checkLetterInput(letterInput){
     //check if key pressed is correct
-      let currentPosition = 0;
       let lettersCorrect = 0;
       let lettersIncorrect = 0;
       let keyPressed = letterInput;
       let wordArray = ['sample', 'array', 'for', 'now'];
 
-      if(keyPressed === wordArray[currentPosition]){
+      if(keyPressed === wordArray[currentLetter]){
         lettersCorrect++;
-        currentPosition++;
-      } else if (keyPressed !== wordArray[currentPosition]){
+        currentLetter++;
+      } else if (keyPressed !== wordArray[currentLetter]){
         lettersIncorrect++;
       }
   };
@@ -174,19 +204,15 @@ function Training(props){
   let leftBookContent;
   let rightBookContent;
 
+
   if(props.currentRound > 0){
-    leftBookContent = <p>{props.levels[props.currentRound - 1][0]}</p>;
-    rightBookContent = <p>{props.levels[props.currentRound - 1][1]}</p>;
+    leftBookContent = <p>{getTypingContent()}</p>;
+    rightBookContent = <p>{getTypingContent()}</p>;
   }
-  let handContent;
 
 
 //decide hand content
-  if ( !props.isTraining ) {
-    handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
-  } else if (props.isTraining){
-    handContent = getHandContent('a');
-  }
+
 
 
 
