@@ -85,7 +85,6 @@ const Span = styled.span`
 `
 
 function Training(props){
-  const { dispatch } = props;
   let handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
 
   function getHandContent(letter){
@@ -161,7 +160,11 @@ function Training(props){
 
   function handDecider(letter){
     if ( !props.isTraining ) {
-      handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
+      if( props.currentRound > 0){
+        handContent = <Button onClick={updateCurrentRound}>Start Next Round</Button>
+      } else if ( props.currentRound === 0){
+        handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
+      }
     } else if (props.isTraining){
       handContent = getHandContent(letter)
     }
@@ -170,30 +173,37 @@ function Training(props){
   let typingContentArray = props.levels[props.currentRound].split('');
 
   function getTypingContent(keyPressed){
-    let displayContent = [];
-    for(let i = 0; i < typingContentArray.length; i++){
-      if(i === props.currentLetterPosition) {
-        displayContent.push(<Span>{typingContentArray[i]}</Span>);
-      } else {
-        displayContent.push(<span>{typingContentArray[i]}</span>);
+    if(props.isTraining){
+      let displayContent = [];
+      for(let i = 0; i < typingContentArray.length; i++){
+        if(i === props.currentLetterPosition) {
+          displayContent.push(<Span>{typingContentArray[i]}</Span>);
+        } else {
+          displayContent.push(<span>{typingContentArray[i]}</span>);
+        }
       }
+      let targetLetter = typingContentArray[props.currentLetterPosition];
+      handDecider(targetLetter);
+      return displayContent;
+    } else {
+      return ''
     }
-    let targetLetter = typingContentArray[props.currentLetterPosition];
-    handDecider(targetLetter);
-    return displayContent;
   }
 
+
   document.onkeypress = function(e){
-    e = e || window.event;
-    var charCode = e.keyCode || e.which;
-    var charStr = String.fromCharCode(charCode);
-    checkLetterInput(charStr);
-    getTypingContent(charStr);
-    console.log(props.lettersCorrect)
+    if(props.isTraining === true){
+      e = e || window.event;
+      var charCode = e.keyCode || e.which;
+      var charStr = String.fromCharCode(charCode);
+      checkLetterInput(charStr);
+      getTypingContent(charStr);
+    }
   }
 
   function checkLetterInput(keyPressed){
     let targetLetter = typingContentArray[props.currentLetterPosition];
+    const { dispatch } = props;
     if(keyPressed === targetLetter){
       const action = {
         type: c.UPDATE_CURRENT_LETTER
@@ -203,6 +213,9 @@ function Training(props){
       };
       dispatch(action);
       dispatch(secondAction);
+      if(props.currentLetterPosition === typingContentArray.length - 1){
+        endRound();
+      }
     } else if (keyPressed !== targetLetter){
       const incorrectDispatch = {
         type: c.UPDATE_LETTERS_INCORRECT
@@ -212,6 +225,7 @@ function Training(props){
   };
 
   function updateCurrentRound() {
+    const { dispatch } = props;
     const action = {
       type: c.NEW_ROUND
     };
@@ -226,24 +240,19 @@ function Training(props){
     leftBookContent = <p>{getTypingContent()}</p>;
     rightBookContent = <p>{getTypingContent()}</p>;
   }
-  if(props.isTraining){
-    if(props.currentLetterPosition === typingContentArray.length){
-      endRound();
-    }
-  }
+
 
   function endRound() {
-    handContent = <Button>Next Round</Button>;
+    const { dispatch } = props;
     const action = {
       type: c.ADD_ROUND_STATS
     };
     dispatch(action);
-    console.log(props.lettersCorrect)
     //calculate wpm, log all data for round, display route to stats/command (or start next round),
   }
 
   return (
-    <WelcomeContainer className="welcomeContainer">
+    <WelcomeContainer className="welcomeContainer" key={props.currentLetterPosition}>
       <BookContainer>
         <InnerBook left>
           {leftBookContent}
@@ -255,6 +264,9 @@ function Training(props){
       <HandsDiv>
         {handContent}
       </HandsDiv>
+      <div style={{color: 'white'}}>round: {props.currentRound}</div>
+      <div style={{color: 'white'}}>letters correct: {props.lettersCorrect}</div>
+      <div style={{color: 'white'}}>letters incorrect: {props.lettersIncorrect}</div>
     </WelcomeContainer>
   );
 };
