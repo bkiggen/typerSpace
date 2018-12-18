@@ -23,6 +23,6 @@ export const initialState = {
         "fjrmvjufjrm ffjrumfv jfurmvj furmjvurj mf jfurmvjfur mrvjur"
       ],
   stats: {
-    roundScores: []
+    roundStats: []
   }
 };

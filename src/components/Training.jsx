@@ -85,7 +85,7 @@ const Span = styled.span`
 
 function Training(props){
   const { dispatch } = props;
-  let handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
+  let handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
 
   function getHandContent(letter){
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
@@ -160,7 +160,7 @@ function Training(props){
 
   function handDecider(letter){
     if ( !props.isTraining ) {
-      handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
+      handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
     } else if (props.isTraining){
       handContent = getHandContent(letter)
     }
@@ -170,7 +170,6 @@ function Training(props){
 
   function getTypingContent(keyPressed){
     let displayContent = [];
-
     for(let i = 0; i < typingContentArray.length; i++){
       if(i === props.currentLetterPosition) {
         displayContent.push(<Span>{typingContentArray[i]}</Span>);
@@ -189,6 +188,8 @@ function Training(props){
     var charStr = String.fromCharCode(charCode);
     checkLetterInput(charStr);
     getTypingContent(charStr);
+    console.log(props.currentLetterPosition)
+    console.log(typingContentArray);
   }
 
   function checkLetterInput(keyPressed){
@@ -210,7 +211,7 @@ function Training(props){
     }
   };
 
-  function updateCurrentLevel() {
+  function updateCurrentRound() {
     const action = {
       type: c.NEW_ROUND
     };
@@ -226,8 +227,19 @@ function Training(props){
     rightBookContent = <p>{getTypingContent()}</p>;
   }
 
+  if(props.currentLetterPosition === typingContentArray.length - 1){
+    endRound();
+  }
 
-//decide hand content
+  function endRound() {
+    console.log('roundOver')
+    updateCurrentRound();
+    const action = {
+      type: c.ADD_ROUND_STATS
+    };
+    dispatch(action);
+    //calculate wpm, log all data for round, display route to stats/command (or start next round),
+  }
 
   return (
     <WelcomeContainer className="welcomeContainer">
