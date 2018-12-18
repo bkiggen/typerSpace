@@ -13,7 +13,7 @@ import TempNav from './TempNav';
 
 class App extends Component {
   componentDidMount(){
-    console.log(this.props)
+    console.log(this.props.currentRound);
   }
 
   render() {
@@ -24,14 +24,24 @@ class App extends Component {
           <Route exact path='/' render={()=><Welcome />} />
           <Route exact path='/Command' render={()=><Command />} />
           <Route exact path='/Battle' render={()=><Battle />} />
-          <Route exact path='/Training' render={()=><Training />} />
+          <Route exact path='/Training' render={()=><Training
+              currentRound={this.props.currentRound}
+              isTraining={this.props.isTraining}
+                />} />
           <Route exact path='/Stats' render={()=><Stats />} />
           <Route component={Error404} />
         </Switch>
       </div>
     );
   }
-}
+};
+
+const mapStateToProps = state => {
+  return {
+    currentRound: state.roundReducer.currentRound,
+    isTraining: state.roundReducer.isTraining
+  };
+};
 
 
-export default App;
+export default withRouter(connect(mapStateToProps)(App));

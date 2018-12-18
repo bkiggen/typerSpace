@@ -74,11 +74,8 @@ const Button = styled.button`
   }
 `
 
-
-
 function Training(props){
-  console.log(props);
-
+  console.log(props)
   function getHandContent(letter){
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
       return (
@@ -158,13 +155,13 @@ function Training(props){
   let rightBookContent;
 
   let handContent;
-  if ( 1 === 1 ) {
+
+  if ( !props.isTraining ) {
     handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
+  } else if (props.isTraining){
+    handContent = <img src={R5}/>
   }
 
-  const mapStateToProps = state =>{
-    
-  }
 
   return (
     <WelcomeContainer className="welcomeContainer">
@@ -183,5 +180,4 @@ function Training(props){
   );
 };
 
-
-export default connect(mapStateToProps)(Training);
+export default connect()(Training);

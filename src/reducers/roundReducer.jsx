@@ -15,9 +15,9 @@ const roundReducer = (state = initialState, action) => {
         currentRound: newRound,
         isTraining: newIsTraining
       });
-
-      console.log(state.isTraining);
+      console.log(newState);
       return newState;
+
     default:
       return state;
 
