@@ -14,7 +14,6 @@ import TempNav from './TempNav';
 class App extends Component {
 
   render() {
-    console.log(this.props);
     return (
       <div className="App">
         <TempNav/>
@@ -28,6 +27,8 @@ class App extends Component {
               levels={this.props.levels}
               currentLetterPosition={this.props.currentLetterPosition}
               stats={this.props.stats}
+              lettersCorrect={this.props.lettersCorrect}
+              lettersIncorrect={this.props.lettersIncorrect}
                 />} />
           <Route exact path='/Stats' render={()=><Stats />} />
           <Route component={Error404} />
@@ -43,7 +44,9 @@ const mapStateToProps = state => {
     isTraining: state.roundReducer.isTraining,
     levels: state.roundReducer.levels,
     stats: state.roundReducer.stats,
-    currentLetterPosition: state.roundReducer.currentLetterPosition
+    currentLetterPosition: state.roundReducer.currentLetterPosition,
+    lettersCorrect: state.roundReducer.lettersCorrect,
+    lettersIncorrect: state.roundReducer.lettersIncorrect
   };
 };
 

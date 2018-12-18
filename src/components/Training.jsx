@@ -165,11 +165,12 @@ function Training(props){
       handContent = getHandContent(letter)
     }
   }
-  console.log(props.currentLetterPosition)
-  function getTypingContent(keyPressed){
 
+  let typingContentArray = props.levels[props.currentRound].split('');
+
+  function getTypingContent(keyPressed){
     let displayContent = [];
-    let typingContentArray = props.levels[props.currentRound].split('');
+
     for(let i = 0; i < typingContentArray.length; i++){
       if(i === props.currentLetterPosition) {
         displayContent.push(<Span>{typingContentArray[i]}</Span>);
@@ -179,7 +180,6 @@ function Training(props){
     }
     let targetLetter = typingContentArray[props.currentLetterPosition];
     handDecider(targetLetter);
-    checkLetterInput(targetLetter, keyPressed)
     return displayContent;
   }
 
@@ -187,25 +187,27 @@ function Training(props){
     e = e || window.event;
     var charCode = e.keyCode || e.which;
     var charStr = String.fromCharCode(charCode);
+    checkLetterInput(charStr);
     getTypingContent(charStr);
   }
 
-  function checkLetterInput(targetLetter, keyPressed){
-    console.log(targetLetter);
-    console.log(keyPressed);
-      let lettersCorrect = 0;
-      let lettersIncorrect = 0;
-
-      if(keyPressed === targetLetter){
-        lettersCorrect++;
-        const action = {
-          type: c.UPDATE_CURRENT_LETTER
-        };
-        dispatch(action);        console.log('correct!')
-      } else if (keyPressed !== targetLetter){
-        lettersIncorrect++;
-        console.log('incorrect!')
+  function checkLetterInput(keyPressed){
+    let targetLetter = typingContentArray[props.currentLetterPosition];
+    if(keyPressed === targetLetter){
+      const action = {
+        type: c.UPDATE_CURRENT_LETTER
+      };
+      const secondAction = {
+        type: c.UPDATE_LETTERS_CORRECT
+      };
+      dispatch(action);
+      dispatch(secondAction);
+    } else if (keyPressed !== targetLetter){
+      const incorrectDispatch = {
+        type: c.UPDATE_LETTERS_INCORRECT
       }
+      dispatch(incorrectDispatch);
+    }
   };
 
   function updateCurrentLevel() {
