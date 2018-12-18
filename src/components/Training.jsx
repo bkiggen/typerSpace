@@ -76,7 +76,7 @@ const Button = styled.button`
 
 function Training(props){
   function getHandContent(letter){
-    console.log(letter)
+
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
       return (
       <div>
@@ -147,6 +147,22 @@ function Training(props){
     }
   }
 
+  function checkLetterInput(letterInput){
+    //check if key pressed is correct
+      let currentPosition = 0;
+      let lettersCorrect = 0;
+      let lettersIncorrect = 0;
+      let keyPressed = letterInput;
+      let wordArray = ['sample', 'array', 'for', 'now'];
+
+      if(keyPressed === wordArray[currentPosition]){
+        lettersCorrect++;
+        currentPosition++;
+      } else if (keyPressed !== wordArray[currentPosition]){
+        lettersIncorrect++;
+      }
+  };
+
   function updateCurrentLevel() {
     const { dispatch } = props;
     const action = {
@@ -171,6 +187,7 @@ function Training(props){
   } else if (props.isTraining){
     handContent = getHandContent('a');
   }
+
 
 
   return (
