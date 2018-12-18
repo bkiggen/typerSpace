@@ -19,6 +19,7 @@ import L5 from './../assets/images/hands L5.png';
 const { c } = constants;
 
 const WelcomeContainer = styled.div`
+
   width: 1155px;
   height: 684px;
   margin: 0 auto;
@@ -188,8 +189,7 @@ function Training(props){
     var charStr = String.fromCharCode(charCode);
     checkLetterInput(charStr);
     getTypingContent(charStr);
-    console.log(props.currentLetterPosition)
-    console.log(typingContentArray);
+    console.log(props.lettersCorrect)
   }
 
   function checkLetterInput(keyPressed){
@@ -226,18 +226,19 @@ function Training(props){
     leftBookContent = <p>{getTypingContent()}</p>;
     rightBookContent = <p>{getTypingContent()}</p>;
   }
-
-  if(props.currentLetterPosition === typingContentArray.length - 1){
-    endRound();
+  if(props.isTraining){
+    if(props.currentLetterPosition === typingContentArray.length){
+      endRound();
+    }
   }
 
   function endRound() {
-    console.log('roundOver')
-    updateCurrentRound();
+    handContent = <Button>Next Round</Button>;
     const action = {
       type: c.ADD_ROUND_STATS
     };
     dispatch(action);
+    console.log(props.lettersCorrect)
     //calculate wpm, log all data for round, display route to stats/command (or start next round),
   }
 

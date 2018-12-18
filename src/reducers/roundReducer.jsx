@@ -44,13 +44,17 @@ const roundReducer = (state = initialState, action) => {
         lettersCorrect: state.lettersCorrect,
         lettersIncorrect: state.lettersIncorrect
       };
-      const newRoundStats = state.stats.roundStats.push(roundData);
-      const newStats = state.stats;
+      let newRoundStats = state.stats.roundStats;
+      newRoundStats.push(roundData);
+      let newStats = state.stats;
       newStats.roundStats = newRoundStats;
       newState = Object.assign({}, state, {
-        stats: newStats
+        stats: newStats,
+        isTraining: false,
+        lettersCorrect: 0,
+        currentLetterPosition: 0,
+        lettersIncorrect: 0
       });
-      console.log(state.roundStats);
       return newState;
 
     default:

@@ -30,7 +30,9 @@ class App extends Component {
               lettersCorrect={this.props.lettersCorrect}
               lettersIncorrect={this.props.lettersIncorrect}
                 />} />
-          <Route exact path='/Stats' render={()=><Stats />} />
+          <Route exact path='/Stats'
+            currentRound={this.props.currentRound}
+            stats={this.props.stats} render={()=><Stats />} />
           <Route component={Error404} />
         </Switch>
       </div>
