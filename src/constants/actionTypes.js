@@ -1,1 +1,2 @@
 export const NEW_ROUND = 'NEW_ROUND';
+export const UPDATE_CURRENT_LETTER = 'UPDATE_CURRENT_LETTER';

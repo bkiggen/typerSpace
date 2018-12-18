@@ -37,11 +37,14 @@ const BookContainer = styled.div`
   `;
 
 const InnerBook = styled.div`
-  width: 214px;
+  width: 200px;
   height: 400px;
   word-wrap: break-word;
-  font-size: 20px;
+  font-size: 30px;
+  padding: 2px;
   letter-spacing: 4px;
+  // background-color: rgba(200, 200, 200, .5);
+  line-height: 50px;
 `;
 
 const HandsDiv = styled.div`
@@ -77,10 +80,11 @@ const Button = styled.button`
 
 const Span = styled.span`
   color: red;
+  text-decoration: underline;
 `
 
 function Training(props){
-  let currentLetter;
+  const { dispatch } = props;
   let handContent = <Button onClick={updateCurrentLevel}>Start Round</Button>
 
   function getHandContent(letter){
@@ -161,40 +165,50 @@ function Training(props){
       handContent = getHandContent(letter)
     }
   }
+  console.log(props.currentLetterPosition)
+  function getTypingContent(keyPressed){
 
-  function getTypingContent(){
     let displayContent = [];
     let typingContentArray = props.levels[props.currentRound].split('');
     for(let i = 0; i < typingContentArray.length; i++){
-      if(i === currentLetter) {
+      if(i === props.currentLetterPosition) {
         displayContent.push(<Span>{typingContentArray[i]}</Span>);
       } else {
         displayContent.push(<span>{typingContentArray[i]}</span>);
       }
     }
-    handDecider(typingContentArray[currentLetter]);
+    let targetLetter = typingContentArray[props.currentLetterPosition];
+    handDecider(targetLetter);
+    checkLetterInput(targetLetter, keyPressed)
     return displayContent;
   }
 
+  document.onkeypress = function(e){
+    e = e || window.event;
+    var charCode = e.keyCode || e.which;
+    var charStr = String.fromCharCode(charCode);
+    getTypingContent(charStr);
+  }
 
-
-  function checkLetterInput(letterInput){
-    //check if key pressed is correct
+  function checkLetterInput(targetLetter, keyPressed){
+    console.log(targetLetter);
+    console.log(keyPressed);
       let lettersCorrect = 0;
       let lettersIncorrect = 0;
-      let keyPressed = letterInput;
-      let wordArray = ['sample', 'array', 'for', 'now'];
 
-      if(keyPressed === wordArray[currentLetter]){
+      if(keyPressed === targetLetter){
         lettersCorrect++;
-        currentLetter++;
-      } else if (keyPressed !== wordArray[currentLetter]){
+        const action = {
+          type: c.UPDATE_CURRENT_LETTER
+        };
+        dispatch(action);        console.log('correct!')
+      } else if (keyPressed !== targetLetter){
         lettersIncorrect++;
+        console.log('incorrect!')
       }
   };
 
   function updateCurrentLevel() {
-    const { dispatch } = props;
     const action = {
       type: c.NEW_ROUND
     };
@@ -212,9 +226,6 @@ function Training(props){
 
 
 //decide hand content
-
-
-
 
   return (
     <WelcomeContainer className="welcomeContainer">

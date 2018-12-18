@@ -16,6 +16,12 @@ const roundReducer = (state = initialState, action) => {
         isTraining: newIsTraining
       });
       return newState;
+    case c.UPDATE_CURRENT_LETTER:
+    const newLetterPosition = state.currentLetterPosition + 1;
+    newState = Object.assign({}, state, {
+      currentLetterPosition: newLetterPosition
+    })
+      return newState;
 
     default:
       return state;

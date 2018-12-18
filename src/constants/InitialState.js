@@ -1,5 +1,6 @@
 export const initialState = {
   currentRound: 0,
+  currentLetterPosition: 0,
   isTraining: false,
   levels: [
         "jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf",
