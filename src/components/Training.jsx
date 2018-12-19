@@ -16,6 +16,7 @@ import R4 from './../assets/images/hands R4.png';
 import L4 from './../assets/images/hands L4.png';
 import R5 from './../assets/images/hands R5.png';
 import L5 from './../assets/images/hands L5.png';
+import {Link} from 'react-router-dom';
 const { c } = constants;
 
 const WelcomeContainer = styled.div`
@@ -44,7 +45,6 @@ const InnerBook = styled.div`
   font-size: 30px;
   padding: 2px;
   letter-spacing: 4px;
-  // background-color: rgba(200, 200, 200, .5);
   line-height: 50px;
 `;
 
@@ -59,7 +59,7 @@ const HandsDiv = styled.div`
 
 const Button = styled.button`
   height: 60px;
-  width: 90px;
+  width: 120px;
   outline: none;
   border: 1px solid #FC9FDF;
   background-color: #6C2B15;
@@ -74,9 +74,15 @@ const Button = styled.button`
   @keyframes hover {
     100%{
       border: 1px solid #FC9FDF;
-      box-shadow: 0px 0px 6px 0px #FC9FDF;
+      box-shadow: 0px 0px 600px 100px rgba(255,20,147, .5);
     }
   }
+`
+
+const ButtonDiv = styled.div`
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
 `
 
 const Span = styled.span`
@@ -85,8 +91,7 @@ const Span = styled.span`
 `
 
 function Training(props){
-  let handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
-
+  let handContent;
   function getHandContent(letter){
     if(letter === 'f' || letter === 'g' || letter === 't' || letter === 'b' || letter === 'v' || letter === 'r'){
       return (
@@ -157,14 +162,14 @@ function Training(props){
       )
     }
   };
-
+  handDecider();
   function handDecider(letter){
     if ( !props.isTraining ) {
-      if( props.currentRound > 0){
-        handContent = <Button onClick={updateCurrentRound}>Start Next Round</Button>
-      } else if ( props.currentRound === 0){
-        handContent = <Button onClick={updateCurrentRound}>Start Round</Button>
-      }
+      handContent = <ButtonDiv>
+                     <Button main><Link to="/Stats" style={{textDecoration: 'none', color: '#F0A513'}}>Stats</Link></Button>
+                     <Button style={{height: '80px', width: '140px'}} onClick={updateCurrentRound}>Start Round</Button>
+                     <Button><Link to="/Command" style={{textDecoration: 'none', color: '#F0A513'}}>Command Room</Link></Button>
+                   </ButtonDiv>
     } else if (props.isTraining){
       handContent = getHandContent(letter)
     }

@@ -29,7 +29,7 @@ const EnterButton = styled.button`
   @keyframes hover {
     100%{
       border: 1px solid red;
-      box-shadow: 0px 0px 6px 0px red;
+      box-shadow: 0px 0px 600px 600px rgba(255,20,147, .2);
     }
   }
 `
