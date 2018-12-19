@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import WelcomeImage from '../assets/images/Welcome.png';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import usaShip from './../assets/images/lander.png';
 
 const WelcomeContainer = styled.div`
   width: 1155px;
@@ -14,6 +15,7 @@ const WelcomeContainer = styled.div`
   color: #EFCB8C;
   font-size: 30px;
   background-repeat: no-repeat;
+  position: relative;
 `;
 
 const EnterButton = styled.button`
@@ -34,6 +36,9 @@ const EnterButton = styled.button`
   }
 `
 
+
+// <img src={usaShip} style={{position: 'absolute', top:'500px', left:'500px'}}/>
+
 function Welcome(props){
 
   return (
@@ -42,6 +47,7 @@ function Welcome(props){
       <EnterButton>
         <Link to="/Command" style={{color: '#EFCB8C', textDecoration: 'none', fontSize: '14px'}}>Let's Begin</Link>
       </EnterButton>
+
     </WelcomeContainer>
   );
 }
