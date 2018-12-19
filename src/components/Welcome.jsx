@@ -36,9 +36,6 @@ const EnterButton = styled.button`
   }
 `
 
-
-// <img src={usaShip} style={{position: 'absolute', top:'500px', left:'500px'}}/>
-
 function Welcome(props){
 
   return (

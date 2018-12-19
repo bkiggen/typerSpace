@@ -162,7 +162,9 @@ function Training(props){
       )
     }
   };
+
   handDecider();
+
   function handDecider(letter){
     if ( !props.isTraining ) {
       handContent = <ButtonDiv>
