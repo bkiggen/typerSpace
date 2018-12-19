@@ -70,7 +70,7 @@ const roundReducer = (state = initialState, action) => {
       let newRoundTime = (Date.now() - newTimeStarted) / 1000;
 
 
-      let newWordsPerMinute = (newStats.roundStats[state.currentRound - 1].lettersCorrect / 5) / (newRoundTime / 1000 / 60);
+      let newWordsPerMinute = ((newStats.roundStats[state.currentRound - 1].lettersCorrect - newStats.roundStats[state.currentRound - 1].lettersIncorrect) / 5) / ((newRoundTime) / 60);
 
       let newAccuracy = (newStats.roundStats[state.currentRound - 1].lettersCorrect - newStats.roundStats[state.currentRound - 1].lettersIncorrect) / (59) * 100;
 
