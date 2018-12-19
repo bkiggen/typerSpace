@@ -251,6 +251,17 @@ function Training(props){
     //calculate wpm, log all data for round, display route to stats/command (or start next round),
   }
 
+  let lettersCorrectDisplay;
+  let lettersIncorrectDisplay;
+  if(props.stats.roundStats[props.currentRound - 1]){
+    lettersCorrectDisplay = <div style={{color: 'white'}}>letters correct: {props.stats.roundStats[props.currentRound - 1].lettersCorrect}</div>
+
+  lettersIncorrectDisplay = <div style={{color: 'white'}}>letters incorrect: {props.stats.roundStats[props.currentRound - 1].lettersIncorrect}</div>
+  }
+
+
+  //incorrect letters still not displaying properly
+
   return (
     <WelcomeContainer className="welcomeContainer" key={props.currentLetterPosition}>
       <BookContainer>
@@ -265,8 +276,9 @@ function Training(props){
         {handContent}
       </HandsDiv>
       <div style={{color: 'white'}}>round: {props.currentRound}</div>
-      <div style={{color: 'white'}}>letters correct: {props.lettersCorrect}</div>
-      <div style={{color: 'white'}}>letters incorrect: {props.lettersIncorrect}</div>
+      {lettersCorrectDisplay}
+      {lettersIncorrectDisplay}
+
     </WelcomeContainer>
   );
 };

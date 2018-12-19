@@ -24,31 +24,41 @@ function Stats(props){
     color: #4AB7AE;
     text-align: center;
   `
-  const RankContainer = styled.div`
+  const SmallContainer = styled.div`
     width: 90px;
     height: 100px;
     position: absolute;
-    left: 1010px;
-    top: 330px;
     text-align: center;
-    font-size: 60px;
-    padding-top: 15px;
+
+
     color: #4AB7AE;
+    ${props => props.rank && css`
+      left: 1010px;
+      top: 330px;
+      width: 90px;
+      height: 100px;
+      font-size: 60px;
+      padding-top: 15px;
+    `}
   `
-console.log(props.stats);
+
 
 
   function getLetterData(requestType){
+    let currentRound = props.currentRound - 1;
     if(props.stats.roundStats.length > 0){
       if(requestType === 'correct'){
-        let currentRound = props.currentRound - 1;
-        console.log(currentRound);
-        console.log(props.stats.roundStats[0].lettersCorrect);
-        return props.stats.roundStats[currentRound].lettersCorrect
+        if(currentRound > -1){
+          return props.stats.roundStats[currentRound].lettersCorrect
+        }
       } else if( requestType === 'incorrect'){
-        return props.stats.roundStats[props.currentRound - 1].lettersIncorrect
+        if(currentRound > -1){
+          return props.stats.roundStats[currentRound].lettersIncorrect
+        }
       } else if(requestType === 'rank'){
-        return props.currentRound;
+        if(currentRound > -1){
+          return props.currentRound;
+        }
       }
     } else {
       return <div></div>
@@ -66,9 +76,9 @@ console.log(props.stats);
         <h4>Time: </h4>
         <h4>Words Per Minute: </h4>
       </MainContainer>
-      <RankContainer>
+      <SmallContainer rank>
         {getLetterData('rank')}
-      </RankContainer>
+      </SmallContainer>
     </StatsContainer>
   );
 }

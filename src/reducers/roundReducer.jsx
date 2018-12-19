@@ -5,12 +5,23 @@ const { c, initialState } = constants;
 const roundReducer = (state = initialState, action) => {
   let newState;
   let newIsTraining;
+  let roundData;
+  let newStats;
+  let newRound;
 
   switch(action.type) {
     case c.NEW_ROUND:
-    console.log('new round');
-      const newRound = state.currentRound + 1;
+      newRound = state.currentRound + 1;
       newIsTraining = true;
+
+      roundData = {
+        lettersCorrect: 0,
+        lettersIncorrect: 0
+      };
+
+      newRound = state.currentRound + 1;
+      newStats = state.stats;
+      newStats.roundStats.push(roundData);
 
       newState = Object.assign({}, state, {
         currentRound: newRound,
@@ -20,48 +31,48 @@ const roundReducer = (state = initialState, action) => {
       return newState;
 
     case c.UPDATE_CURRENT_LETTER:
-      console.log("updateCurrentLetter is firing");
       const newLetterPosition = state.currentLetterPosition + 1;
         newState = Object.assign({}, state, {
           currentLetterPosition: newLetterPosition
       })
       return newState;
 
+
+
     case c.UPDATE_LETTERS_CORRECT:
-      console.log("updateLettersCorrect is firing");
-      const newLettersCorrect = state.lettersCorrect + 1;
-        newState = Object.assign({}, state, {
-          lettersCorrect: newLettersCorrect
+      let newLettersCorrect = state.stats.roundStats[state.currentRound - 1].lettersCorrect + 1;
+
+      newStats = state.stats;
+      newStats.roundStats[state.currentRound - 1].lettersCorrect = newLettersCorrect;
+
+      newState = Object.assign({}, state, {
+        stats: newStats
       });
       return newState;
 
+
+
     case c.UPDATE_LETTERS_INCORRECT:
-      console.log("updateLettersINCorrect is firing");
-      const newLettersIncorrect = state.lettersIncorrect + 1;
+      let newLettersIncorrect = state.stats.roundStats[state.currentRound - 1].lettersCorrect + 1;
+
+      newStats = state.stats;
+      newStats.roundStats[state.currentRound - 1].lettersCorrect = newLettersIncorrect;
+
       newState = Object.assign({}, state, {
-        lettersIncorrect: newLettersIncorrect
+        stats: newStats
       });
+
       return newState;
 
     case c.ADD_ROUND_STATS:
-      console.log('add round stats is firiing');
-      const roundData = {
-        lettersCorrect: state.lettersCorrect,
-        lettersIncorrect: state.lettersIncorrect
-      };
-      let newRoundStats = state.stats.roundStats;
-      newRoundStats.push(roundData);
-      let newStats = state.stats;
-      newStats.roundStats = newRoundStats;
-      newIsTraining = false;
+
       newState = Object.assign({}, state, {
-        stats: newStats,
-        isTraining: newIsTraining,
+        isTraining: false,
         lettersCorrect: 0,
         currentLetterPosition: 0,
         lettersIncorrect: 0
       });
-      console.log('newState:' + newState.stats.roundStats[0])
+
       return newState;
 
     default:
