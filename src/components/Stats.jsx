@@ -62,7 +62,6 @@ function Stats(props){
   `
 
 
-
   function getLetterData(requestType){
     let currentRound = props.currentRound - 1;
     if(props.stats.roundStats.length > 0){
@@ -77,6 +76,18 @@ function Stats(props){
       } else if(requestType === 'rank'){
         if(currentRound > -1){
           return props.currentRound;
+        }
+      } else if(requestType === 'time'){
+        if(currentRound > -1){
+          return props.stats.roundStats[currentRound].roundTime.toFixed(0);
+        }
+      } else if(requestType === 'wpm'){
+        if(currentRound > -1){
+          return props.stats.roundStats[currentRound].wordsPerMinute.toFixed(2);
+        }
+      } else if(requestType === 'accuracy'){
+        if(currentRound > -1){
+          return props.stats.roundStats[currentRound].accuracy.toFixed(0);
         }
       }
     } else {
@@ -93,8 +104,9 @@ function Stats(props){
         <br/>
         <h4>Letters Correct: {getLetterData('correct')}</h4>
         <h4>Letters Incorrect: {getLetterData('incorrect')}</h4>
-        <h4>Time: </h4>
-        <h4>Words Per Minute: </h4>
+        <h4>Time: {getLetterData('time')}s</h4>
+        <h4>Words Per Minute: {getLetterData('wpm')}</h4>
+        <h4>Accuracy: {getLetterData('accuracy')}%</h4>
       </MainContainer>
       <SmallContainer rank>
         {getLetterData('rank')}

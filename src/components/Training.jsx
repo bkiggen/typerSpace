@@ -204,6 +204,7 @@ function Training(props){
       checkLetterInput(charStr);
       getTypingContent(charStr);
     }
+    console.log(props.stats.roundStats[props.currentRound - 1].lettersIncorrect);
   }
 
   function checkLetterInput(keyPressed){
@@ -240,35 +241,31 @@ function Training(props){
   let leftBookContent;
   let rightBookContent;
 
-
   if(props.currentRound > 0){
     leftBookContent = <p>{getTypingContent()}</p>;
     rightBookContent = <p>{getTypingContent()}</p>;
   }
 
-
   function endRound() {
     const { dispatch } = props;
     const action = {
-      type: c.ADD_ROUND_STATS
+      type: c.END_ROUND
     };
     dispatch(action);
-    //calculate wpm, log all data for round, display route to stats/command (or start next round),
   }
 
-  let lettersCorrectDisplay;
-  let lettersIncorrectDisplay;
-  if(props.stats.roundStats[props.currentRound - 1]){
-    lettersCorrectDisplay = <div style={{color: 'white'}}>letters correct: {props.stats.roundStats[props.currentRound - 1].lettersCorrect}</div>
+  // let lettersCorrectDisplay;
+  // let lettersIncorrectDisplay;
+  //
+  // if(props.stats.roundStats[props.currentRound - 1]){
+  //   lettersCorrectDisplay = <div style={{color: 'white'}}>letters correct: {props.stats.roundStats[props.currentRound - 1].lettersCorrect}</div>
+  //
+  //   lettersIncorrectDisplay = <div style={{color: 'white'}}>letters incorrect: {props.stats.roundStats[props.currentRound - 1].lettersIncorrect}</div>
+  // }
 
-  lettersIncorrectDisplay = <div style={{color: 'white'}}>letters incorrect: {props.stats.roundStats[props.currentRound - 1].lettersIncorrect}</div>
-  }
-
-
-  //incorrect letters still not displaying properly
 
   return (
-    <WelcomeContainer className="welcomeContainer" key={props.currentLetterPosition}>
+    <WelcomeContainer className="welcomeContainer" key={props.stats.roundStats[props.currentRound - 1]}>
       <BookContainer>
         <InnerBook left>
           {leftBookContent}
@@ -280,10 +277,6 @@ function Training(props){
       <HandsDiv>
         {handContent}
       </HandsDiv>
-      <div style={{color: 'white'}}>round: {props.currentRound}</div>
-      {lettersCorrectDisplay}
-      {lettersIncorrectDisplay}
-
     </WelcomeContainer>
   );
 };
