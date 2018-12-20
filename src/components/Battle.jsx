@@ -88,7 +88,6 @@ function Battle(props){
   function checkLetterInput(keyPressed){
     console.log(typingContentArray);
     let targetLetter = typingContentArray[currentLetterPosition];
-    const { dispatch } = props;
     if(keyPressed === targetLetter){
       currentLetterPosition += 1;
       if(currentLetterPosition === typingContentArray.length - 1){
@@ -99,19 +98,22 @@ function Battle(props){
     }
   };
 
+  let endOfGameContent = <Canvas>
+                          <Half left>
+                            <Lander src={usaShip}/>
+                          </Half>
+                          <Half right>
+                            {getTypingContent()}
+                          </Half>
+                        </Canvas>;
 
-
+  function endOfGame(){
+    endOfGameContent = <div>Well Done! You've saved the planet or whatever! Now you can stop playing this game!</div>
+  }
 
   return (
     <BattleDiv>
-      <Canvas>
-        <Half left>
-          <Lander src={usaShip}/>
-        </Half>
-        <Half right>
-          {getTypingContent()}
-        </Half>
-      </Canvas>
+      {endOfGameContent}
     </BattleDiv>
   );
 }
