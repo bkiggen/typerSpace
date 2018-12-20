@@ -206,7 +206,6 @@ function Training(props){
       checkLetterInput(charStr);
       getTypingContent(charStr);
     }
-    console.log(props.stats.roundStats[props.currentRound - 1].lettersIncorrect);
   }
 
   function checkLetterInput(keyPressed){

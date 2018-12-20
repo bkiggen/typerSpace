@@ -1,6 +1,6 @@
 # _typerSpace_
 
-#### _A typing game for everyone, December 2018_
+#### _A typing game for aliens, December 2018_
 
 #### By _**Ben Kiggen**_
 
