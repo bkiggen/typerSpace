@@ -34,7 +34,9 @@ const Half = styled.div`
     background-color: green;
     width: 50%;
     height: 100%;
-    font-size: 20px;
+    font-size: 26px;
+    padding: 10px;
+    text-align: center;
   `}
 `
 
@@ -74,7 +76,7 @@ const Button = styled.button`
 `
 
 const Drop = styled.div`
-  animation: drop 300000ms;
+  animation: drop 30000ms;
   animation-fill-mode: forwards;
   position: absolute;
   @keyframes drop {
@@ -98,7 +100,7 @@ function Battle(props){
 
   const { dispatch } = props;
 
-  let typingContentString = `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man’s and yet as mortal as his own; that as men busied themselves about their various concerns they were scrutinised and studied, perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water. With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter.`;
+  let typingContentString = `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own; that as men busied themselves about their various concerns they were scrutinised and studied, perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water. With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter.`;
   let typingContentArray = typingContentString.split('');
 
   document.onkeypress = function(e){
