@@ -91,21 +91,14 @@ function Battle(props){
     if(keyPressed === targetLetter){
       currentLetterPosition += 1;
       if(currentLetterPosition === typingContentArray.length - 1){
-        //do something cool
+        endOfGame();
       }
     } else if (keyPressed !== targetLetter){
 
     }
   };
 
-  let endOfGameContent = <Canvas>
-                          <Half left>
-                            <Lander src={usaShip}/>
-                          </Half>
-                          <Half right>
-                            {getTypingContent()}
-                          </Half>
-                        </Canvas>;
+  let endOfGameContent = <Canvas><Half left><Lander src={usaShip}/></Half><Half right>{getTypingContent()}</Half></Canvas>;
 
   function endOfGame(){
     endOfGameContent = <div>Well Done! You've saved the planet or whatever! Now you can stop playing this game!</div>
