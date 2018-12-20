@@ -33,7 +33,7 @@ const Half = styled.div`
     width: 50%;
     height: 100%;
     padding: 10px;
-    font-size: 22px;
+    font-size: 20px;
   `}
 `
 
@@ -52,6 +52,28 @@ const Lander = styled.img`
   }
 `
 
+const Button = styled.button`
+  height: 60px;
+  width: 120px;
+  outline: none;
+  border: 1px solid #FC9FDF;
+  background-color: #6C2B15;
+  color: #F0A513;
+  font-size: 20px;
+  border-radius: 4px;
+  margin-top: 50px;
+  &:hover {
+    animation: hover 1s 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes hover {
+    100%{
+      border: 1px solid #FC9FDF;
+      box-shadow: 0px 0px 600px 100px rgba(255,20,147, .5);
+    }
+  }
+`
+
 const Span = styled.span`
   color: red;
   text-decoration: underline;
@@ -66,8 +88,7 @@ function Battle(props){
     e = e || window.event;
     var charCode = e.keyCode || e.which;
     var charStr = String.fromCharCode(charCode);
-    checkLetterInput();
-    console.log(charStr);
+    checkLetterInput(charStr);
   }
 
   let currentLetterPosition = 0;
@@ -86,7 +107,8 @@ function Battle(props){
   }
 
   function checkLetterInput(keyPressed){
-    console.log(typingContentArray);
+    console.log(currentLetterPosition);
+    console.log(keyPressed);
     let targetLetter = typingContentArray[currentLetterPosition];
     if(keyPressed === targetLetter){
       currentLetterPosition += 1;
@@ -94,19 +116,25 @@ function Battle(props){
         endOfGame();
       }
     } else if (keyPressed !== targetLetter){
-
+      //what will this beee?
     }
   };
 
-  let endOfGameContent = <Canvas><Half left><Lander src={usaShip}/></Half><Half right>{getTypingContent()}</Half></Canvas>;
+  let GameContent = <Canvas><Half left><Lander src={usaShip}/></Half><Half right>{getTypingContent()}</Half></Canvas>
+
+  let initialContent = <button onClick={startGame}>READY?</button>;
+
+  function startGame(){
+    initialContent = <div>poop</div>
+  }
 
   function endOfGame(){
-    endOfGameContent = <div>Well Done! You've saved the planet or whatever! Now you can stop playing this game!</div>
+    GameContent = <div>Well Done! You've saved the planet or whatever! Now you can stop playing this game!</div>
   }
 
   return (
     <BattleDiv>
-      {endOfGameContent}
+      {initialContent}
     </BattleDiv>
   );
 }
