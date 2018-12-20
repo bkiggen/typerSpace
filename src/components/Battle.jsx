@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import usaShip from './../assets/images/lander.png';
 import { connect } from 'react-redux';
 import constants from './../constants';
+import BucolicImage from './../assets/images/bucolic.png';
 const { c } = constants;
 
 const BattleDiv = styled.div`
@@ -14,6 +15,7 @@ const BattleDiv = styled.div`
   padding-top: 50px;
   background-repeat: no-repeat;
   position: relative;
+  font-family: 'Julius Sans One', sans-serif;
 `
 
 const Canvas = styled.div`
@@ -25,16 +27,17 @@ const Canvas = styled.div`
 
 const Half = styled.div`
   ${props => props.left && css`
-    background-color: blue;
     width: 50%;
     height: 100%;
     position: relative;
+    background-image: url(${BucolicImage});
   `}
   ${props => props.right && css`
-    background-color: green;
+    background-color: #cdeeaa;
+    color: #520000;
     width: 50%;
     height: 100%;
-    font-size: 26px;
+    font-size: 28px;
     padding: 10px;
     text-align: center;
   `}
@@ -42,7 +45,7 @@ const Half = styled.div`
 
 const Lander = styled.img`
   position: absolute;
-  animation: wiggle 2s infinite linear;
+  animation: wiggle 2s 18 linear;
   @keyframes wiggle {
     25%{
       transform: rotateZ(5deg)
@@ -76,7 +79,7 @@ const Button = styled.button`
 `
 
 const Drop = styled.div`
-  animation: drop 30000ms;
+  animation: drop 90000ms;
   animation-fill-mode: forwards;
   position: absolute;
   @keyframes drop {
@@ -100,7 +103,7 @@ function Battle(props){
 
   const { dispatch } = props;
 
-  let typingContentString = `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own; that as men busied themselves about their various concerns they were scrutinised and studied, perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water. With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter.`;
+  let typingContentString = `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own that as men busied themselves about their various concerns they were scrutinised and studied perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter`;
   let typingContentArray = typingContentString.split('');
 
   document.onkeypress = function(e){
@@ -125,8 +128,6 @@ function Battle(props){
   }
 
   function checkLetterInput(keyPressed){
-    console.log(props.currentLetterPosition);
-    console.log(keyPressed);
     let targetLetter = typingContentArray[props.currentLetterPosition];
     if(keyPressed === targetLetter){
       //update state
@@ -138,7 +139,7 @@ function Battle(props){
         endOfGame();
       }
     } else if (keyPressed !== targetLetter){
-      //what will this beee?
+
     }
   };
 
@@ -146,19 +147,24 @@ function Battle(props){
 
   function startGame(){
     setTimeout(function(){
-      if (props.currentLetterPosition){
+      if (props.currentLetterPosition < 10){
         endOfGame('lose')
       } else {
         endOfGame('win');
       }
-    }, 300000)
+    }, 90000)
   }
 
   startGame();
-  //timer for 300000ms
 
-  function endOfGame(){
-    GameContent = <div>Well Done! You've saved the planet or whatever! Now you can stop playing this game!</div>
+  function endOfGame(type){
+    if(type === 'win'){
+      alert('win');
+      GameContent = <div>Well Done! You've saved the planet or whatever! Now you can stop playing this game!</div>
+    } else {
+      alert('lose!')
+      GameContent = <div>Better keep training!</div>
+    }
   }
 
   return (

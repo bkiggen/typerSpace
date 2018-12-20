@@ -20,7 +20,6 @@ import {Link} from 'react-router-dom';
 const { c } = constants;
 
 const WelcomeContainer = styled.div`
-
   width: 1155px;
   height: 684px;
   margin: 0 auto;
@@ -30,6 +29,7 @@ const WelcomeContainer = styled.div`
 `;
 
 const BookContainer = styled.div`
+  font-family: 'Julius Sans One', sans-serif;
   width: 484px;
   height: 400px;
   margin: 0 auto;
@@ -46,6 +46,7 @@ const InnerBook = styled.div`
   padding: 2px;
   letter-spacing: 4px;
   line-height: 50px;
+  padding-left: 20px;
 `;
 
 const HandsDiv = styled.div`

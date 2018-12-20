@@ -1,6 +1,5 @@
 let levelsArray = [
       "placeholder for some reason, come back if time",
-      "jf",
       "jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf jf",
       "fj jf fj jf fj jf fj jf fj jf fj jf fj jf fj jf fj jf fj jf",
       "fjj fjj jff jff jjff fjjj fjjf jffj jf j jffjf jff jff jfff",

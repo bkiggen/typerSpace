@@ -18,6 +18,28 @@ const WelcomeContainer = styled.div`
   position: relative;
 `;
 
+const Button = styled.button`
+  height: 60px;
+  width: 120px;
+  outline: none;
+  border: 1px solid #EFCB8C;
+  background-color: #0D8D9B;
+  color: #F0A513;
+  font-size: 20px;
+  border-radius: 4px;
+  margin-top: 30px;
+  &:hover {
+    animation: hover 1s 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes hover {
+    100%{
+      border: 1px solid #FC9FDF;
+      box-shadow: 0px 0px 600px 100px rgba(255,20,147, .5);
+    }
+  }
+`
+
 const EnterButton = styled.button`
   height: 50px;
   width: 80px;
@@ -41,9 +63,9 @@ function Welcome(props){
   return (
     <WelcomeContainer>
       <h1>Welcome to typerSpace!</h1>
-      <EnterButton>
-        <Link to="/Command" style={{color: '#EFCB8C', textDecoration: 'none', fontSize: '14px'}}>Let's Begin</Link>
-      </EnterButton>
+      <Button>
+        <Link to="/Command" style={{color: '#EFCB8C', textDecoration: 'none', fontSize: '18px'}}>Let's Begin</Link>
+      </Button>
 
     </WelcomeContainer>
   );
