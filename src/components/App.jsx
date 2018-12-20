@@ -19,7 +19,9 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={()=><Welcome />} />
           <Route exact path='/Command' render={()=><Command />} />
-          <Route exact path='/Battle' render={()=><Battle />} />
+          <Route exact path='/Battle' render={()=><Battle
+            currentLetterPosition={this.props.currentLetterPosition}
+             />} />
           <Route exact path='/Training' render={()=><Training
               currentRound={this.props.currentRound}
               isTraining={this.props.isTraining}
