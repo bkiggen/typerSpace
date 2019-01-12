@@ -16,7 +16,6 @@ See it live @ https://bkiggen.github.io/typerSpace
 Download it @ https://github.com/bkiggen/typerSpace
 
 * Download the .zip file or clone from command line
-* open index.html in your chosen browser and/or IDE
 * Run ```npm install``` 
 * Then run ```npm run start``` 
 
