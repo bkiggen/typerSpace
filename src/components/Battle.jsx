@@ -109,7 +109,7 @@ const Span = styled.span`
 
 function Battle(props) {
   const { dispatch } = props;
-  const [counter, setCounter] = useState(9);
+  const [counter, setCounter] = useState(90);
   const [content, setContent] = useState(
     `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man's and yet as mortal as his own that as men busied themselves about their various concerns they were scrutinised and studied perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter`
   );
@@ -174,7 +174,7 @@ function Battle(props) {
           endOfGame("win");
         }
       }
-    }, 90000);
+    }, 1000);
   }
 
   startGame();
