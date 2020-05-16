@@ -4,6 +4,7 @@ import usaShip from "./../assets/images/lander.png";
 import { connect } from "react-redux";
 import constants from "./../constants";
 import BucolicImage from "./../assets/images/bucolic.png";
+import { useHistory } from "react-router-dom";
 const { c } = constants;
 
 const BattleDiv = styled.div`
@@ -106,13 +107,13 @@ const Span = styled.span`
   text-decoration: underline;
 `;
 
-//have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own that as men busied themselves about their various concerns they were scrutinised and studied perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter
-
 function Battle(props) {
   const { dispatch } = props;
-  const [counter, setCounter] = useState(90);
-  let typingContentString = `No one would `;
-  let typingContentArray = typingContentString.split("");
+  const [counter, setCounter] = useState(9);
+  const [content, setContent] = useState(
+    `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own that as men busied themselves about their various concerns they were scrutinised and studied perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter`
+  );
+  let typingContentArray = content.split("");
 
   document.onkeypress = function(e) {
     e = e || window.event;
@@ -173,7 +174,7 @@ function Battle(props) {
           endOfGame("win");
         }
       }
-    }, 1000);
+    }, 90000);
   }
 
   startGame();
@@ -181,18 +182,13 @@ function Battle(props) {
   function endOfGame(type) {
     if (type === "win") {
       console.log("win");
-      GameContent = (
-        <div>
-          Thank you, kind soul. You've saved us once again from the Americans.
-        </div>
+      setContent(
+        "Thank you, kind soul. You've saved us once again from the Americans."
       );
     } else {
       console.log("lose");
-      GameContent = (
-        <div>
-          Better keep training! The Americans have landed and they're going to
-          start charging you for EVERYTHING.
-        </div>
+      setContent(
+        "Better keep training! The Americans have landed and they're going to start charging you for EVERYTHING."
       );
     }
   }
