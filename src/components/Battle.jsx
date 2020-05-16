@@ -1,7 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
 import usaShip from "./../assets/images/lander.png";
 import { connect } from "react-redux";
 import constants from "./../constants";
@@ -45,6 +43,11 @@ const Half = styled.div`
       padding: 10px;
       text-align: center;
     `}
+`;
+
+const Timer = styled.h1`
+  color: white;
+  margin: 10px;
 `;
 
 const Lander = styled.img`
@@ -103,10 +106,12 @@ const Span = styled.span`
   text-decoration: underline;
 `;
 
+//have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own that as men busied themselves about their various concerns they were scrutinised and studied perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter
+
 function Battle(props) {
   const { dispatch } = props;
-
-  let typingContentString = `No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than mans and yet as mortal as his own that as men busied themselves about their various concerns they were scrutinised and studied perhaps almost as narrowly as a man with a microscope might scrutinise the transient creatures that swarm and multiply in a drop of water With infinite complacency men went to and fro over this globe about their little affairs, serene in their assurance of their empire over matter`;
+  const [counter, setCounter] = useState(90);
+  let typingContentString = `No one would `;
   let typingContentArray = typingContentString.split("");
 
   document.onkeypress = function(e) {
@@ -138,7 +143,7 @@ function Battle(props) {
       };
       dispatch(action);
       if (props.currentLetterPosition === typingContentArray.length - 1) {
-        endOfGame();
+        endOfGame("win");
       }
     } else if (keyPressed !== targetLetter) {
     }
@@ -147,6 +152,7 @@ function Battle(props) {
   let GameContent = (
     <Canvas>
       <Half left>
+        <Timer>{counter}</Timer>
         <Drop>
           <Lander src={usaShip} />
         </Drop>
@@ -157,12 +163,17 @@ function Battle(props) {
 
   function startGame() {
     setTimeout(function() {
-      if (props.currentLetterPosition < 10) {
-        endOfGame("lose");
-      } else {
-        endOfGame("win");
+      if (counter > 0) {
+        setCounter(counter - 1);
       }
-    }, 90000);
+      if (counter < 1) {
+        if (props.currentLetterPosition < typingContentArray.length - 1) {
+          endOfGame("lose");
+        } else {
+          endOfGame("win");
+        }
+      }
+    }, 1000);
   }
 
   startGame();
