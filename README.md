@@ -11,7 +11,7 @@ _This project serves as my capstone work for the Summer-Winter 2018 Epicodus UI/
 
 ## Setup/Installation Requirements
 
-See it live [here](clever-franklin-dfb958.netlify.app)
+See it live [here](https://clever-franklin-dfb958.netlify.app/#/)
 
 * Download the .zip file or clone from command line
 * Run ```npm install``` 
